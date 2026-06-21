@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>斗球 · 信息索引页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: #f5f9fc;
+            color: #1e2b36;
+            line-height: 1.6;
+        }
+
+        .wrapper {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- hero ---------- */
+        .hero {
+            padding: 60px 0 48px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0d3b4f;
+            background: linear-gradient(135deg, #126e6e, #0f5b5b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #2f4b5a;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 8px 22px;
+            background: #d4ecec;
+            color: #0b4f4f;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ---------- grid / 卡片 ---------- */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: #0d3b4f;
+            position: relative;
+            padding-left: 16px;
+            border-left: 4px solid #2d9b9b;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px 20px;
+            box-shadow: 0 4px 14px rgba(0, 40, 40, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border: 1px solid #e3f0f0;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 26px rgba(18, 110, 110, 0.08);
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            color: #075b5b;
+            margin-bottom: 8px;
+        }
+
+        .card p, .card li {
+            font-size: 0.95rem;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .card ul li {
+            padding: 4px 0 4px 20px;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #2d9b9b;
+        }
+
+        .icon-accent {
+            display: inline-block;
+            background: #d4ecec;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            line-height: 38px;
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: #075b5b;
+        }
+
+        /* ---------- 说明区 ---------- */
+        .intro-block {
+            background: white;
+            border-radius: 24px;
+            padding: 32px 28px;
+            margin: 36px 0;
+            box-shadow: 0 4px 16px rgba(0, 40, 40, 0.04);
+            border: 1px solid #d8ecec;
+        }
+
+        .intro-block p {
+            margin-bottom: 16px;
+        }
+
+        .intro-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .inline-link {
+            color: #0e6b6b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 2px solid #b3dfdf;
+            transition: border-color 0.2s;
+        }
+
+        .inline-link:hover {
+            border-bottom-color: #0e6b6b;
+        }
+
+        /* ---------- FAQ 摘要 ---------- */
+        .faq-item {
+            padding: 16px 0;
+            border-bottom: 1px solid #deedee;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #0d3b4f;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-q::before {
+            content: "Q";
+            display: inline-block;
+            background: #d4ecec;
+            color: #075b5b;
+            font-weight: 700;
+            font-size: 0.8rem;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 22px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .faq-a {
+            color: #2f4b5a;
+            padding-left: 34px;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- 底部 ---------- */
+        .footer {
+            margin: 60px 0 40px;
+            padding: 24px 0 10px;
+            border-top: 1px solid #d3e5e5;
+            text-align: center;
+            color: #4e6b77;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #0e6b6b;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------- mobile ---------- */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+                padding-left: 12px;
+            }
+
+            .intro-block {
+                padding: 24px 18px;
+            }
+
+            .card {
+                padding: 20px 16px;
+            }
+
+            .grid-2col {
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+
+        <!-- hero -->
+        <section class="hero">
+            <h1>斗球 · 信息索引</h1>
+            <p>一份围绕「斗球」站点的结构化介绍，整理其背景、定位与常见疑问，供使用者参考。</p>
+            <span class="badge">📌 站点说明页</span>
+        </section>
+
+        <!-- 优势 / 特点 -->
+        <h2 class="section-title">为什么关注这个站点</h2>
+        <div class="grid-2col">
+            <div class="card">
+                <div class="icon-accent">📊</div>
+                <h3>内容聚焦</h3>
+                <p>围绕特定主题组织信息，减少无关干扰，方便快速定位感兴趣的内容模块。</p>
+            </div>
+            <div class="card">
+                <div class="icon-accent">🧩</div>
+                <h3>结构清晰</h3>
+                <p>栏目与分类经过整理，层级关系明确，不同板块之间保持一致的浏览逻辑。</p>
+            </div>
+            <div class="card">
+                <div class="icon-accent">🔍</div>
+                <h3>信息可溯</h3>
+                <p>部分条目附带来源或参考标识，方便对内容进行核对与延伸了解。</p>
+            </div>
+            <div class="card">
+                <div class="icon-accent">⚙️</div>
+                <h3>持续更新</h3>
+                <p>站点内容会根据实际情况进行调整，保持信息的时效性与适用性。</p>
+            </div>
+        </div>
+
+        <!-- 说明区：站点介绍与可信说明 -->
+        <div class="intro-block">
+            <p><strong>斗球</strong> 是一个以内容索引和分类整理为主要功能的页面集合。站点本身不生成原始数据，而是将分散的信息按照主题重新组织，降低查找成本。所有收录的条目均经过基础筛选，尽力保证来源可靠与表述客观。</p>
+            <p>使用者在浏览时，可以结合自己的判断进一步核实细节。如果你对某个板块感兴趣，可以直接通过导航或链接进入对应区域。关于站点的更多背景，请参阅 <a href="https://main-index-douqiu.com" class="inline-link">斗球</a> 首页的完整介绍。</p>
+            <p>当前页面为独立介绍页，仅用于说明站点定位与内容特点，不构成任何形式的推荐或担保。</p>
+        </div>
+
+        <!-- 场景 / 适用情况 -->
+        <h2 class="section-title">适合哪些场景</h2>
+        <div class="grid-2col">
+            <div class="card">
+                <h3>📋 信息检索</h3>
+                <p>希望快速了解某一主题下的常见分类或资源线索，节省逐个搜索的时间。</p>
+            </div>
+            <div class="card">
+                <h3>📁 资料归档</h3>
+                <p>需要一份结构化的参考列表，用于个人学习、整理或二次查阅。</p>
+            </div>
+            <div class="card">
+                <h3>🔗 发现关联</h3>
+                <p>通过同一站点内的不同条目，发现主题之间的潜在联系。</p>
+            </div>
+            <div class="card">
+                <h3>📖 常规浏览</h3>
+                <p>没有特定目标，单纯想了解站点提供了哪些内容和分类。</p>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <h2 class="section-title">常见疑问摘要</h2>
+        <div class="intro-block" style="padding: 20px 28px;">
+            <div class="faq-item">
+                <div class="faq-q">这个站点主要做什么？</div>
+                <div class="faq-a">提供围绕特定方向的内容索引与分类导航，帮助使用者更高效地找到感兴趣的信息模块。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">信息是否经过核实？</div>
+                <div class="faq-a">收录时会对来源和表述进行基础核对，但建议使用者根据自身需求进一步确认细节。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">内容多久更新一次？</div>
+                <div class="faq-a">更新频率不固定，但会跟随实际情况进行增补或调整，保持整体实用性。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">如何访问主站？</div>
+                <div class="faq-a">直接通过浏览器打开 <a href="https://main-index-douqiu.com" class="inline-link">斗球</a> 即可进入首页，所有栏目均可在站点内找到入口。</div>
+            </div>
+        </div>
+
+        <!-- 底部链接 -->
+        <footer class="footer">
+            <p>本页为独立介绍 · 主站地址：<a href="https://main-index-douqiu.com">斗球</a></p>
+            <p style="margin-top: 6px; font-size: 0.8rem; color: #6f8a93;">内容仅供参考，请结合实际情况使用</p>
+        </footer>
+
+    </div>
+</body>
+</html>
